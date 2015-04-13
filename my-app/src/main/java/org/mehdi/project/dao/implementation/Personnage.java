@@ -1,18 +1,67 @@
 package org.mehdi.project.dao.implementation;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.googlecode.objectify.annotation.*;
 
 @Entity
 @Index
-public class Personnage {
+
+public class Personnage extends ObjectifyGenericDao<Personnage>  {
 
 	@Id
-	String id;
+	private String id;
 	@Unindex
-	String nom;
-	int niveau;
-	int vie;
+	private String nom;
+	private int niveau;
+	private int vie;
 	
+	
+	public Personnage() {
+	
+	}
+	
+	
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public int getNiveau() {
+		return niveau;
+	}
+
+
+	public void setNiveau(int niveau) {
+		this.niveau = niveau;
+	}
+
+
+	public int getVie() {
+		return vie;
+	}
+
+
+	public void setVie(int vie) {
+		this.vie = vie;
+	}
+
+
 	public Personnage(String nom, int niveau) {
 		this.id = nom;
 		this.nom = nom;

@@ -14,9 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<!-- prerequisites>
-		<maven>>=3.1.0</maven>
-	</prerequisites-->
+	<!-- prerequisites> <maven>>=3.1.0</maven> </prerequisites -->
 
 	<dependencies>
 		<!-- Compile/runtime dependencies -->
@@ -58,6 +56,11 @@
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
 			<version>1.9</version>
 		</dependency>
 	</dependencies>
@@ -113,25 +116,25 @@
 			<plugin>
 				<groupId>com.google.appengine</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.8.0</version>
+				<version>1.9.18</version>
 				<configuration>
 					<enableJarClasses>false</enableJarClasses>
-					
+
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	<pluginRepositories>
-        <pluginRepository>
-            <id>google-snapshots</id>
-            <name>Google Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
+		<pluginRepository>
+			<id>google-snapshots</id>
+			<name>Google Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
 </project>

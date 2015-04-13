@@ -7,23 +7,28 @@
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/index.js"></script>
 </head>
 <body>
 
-	<div data-role="page">
-		<div data-role="header">
-			<h1>Welcome To My Homepage</h1>
+	<div id="home" data-role="page">
+		<div data-theme="b" id="header" data-role="header"
+			data-position="fixed">
+			<h3>Home page</h3>
 		</div>
-
-		<div data-role="main" class="ui-content">
-			<p>I Am Now A Mobile Developer!!</p>
-			<p>Heres a new version!!</p>
+		<div role="main" class="ui-content">
+			<h2 id="label1" is="gk-text">Create a personnage</h2>
+			<div id="label2" class="ui-field-contain">
+				<label for="name">Name</label> <input name id="name" type="text">
+			</div>
+			<div id="label3" class="ui-field-contain">
+				<label for="level">Level</label> <input name id="level" type="text">
+			</div>
+			<a id="save" class="ui-btn ui-btn-b">save</a>
 		</div>
-
-		<div data-role="footer">
-			<h1>Footer Text</h1>
+		<div data-theme="b" data-role="footer" data-position="fixed">
+			<h3>New release 2015</h3>
 		</div>
 	</div>
-
 </body>
 </html>

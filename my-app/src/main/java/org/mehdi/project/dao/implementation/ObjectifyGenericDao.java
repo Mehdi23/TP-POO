@@ -6,6 +6,7 @@ import org.mehdi.project.dao.interfaces.ObjectifyGenericDaoInterface;
 
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
 
 public class ObjectifyGenericDao<T> implements ObjectifyGenericDaoInterface<T> {
@@ -13,6 +14,7 @@ public class ObjectifyGenericDao<T> implements ObjectifyGenericDaoInterface<T> {
 	@Override
 	public Key<T> put(T entity) {
 		// TODO Auto-generated method stub
+		ObjectifyService.ofy().save().entity(entity).now(); 
 		return null;
 	}
 
@@ -55,7 +57,7 @@ public class ObjectifyGenericDao<T> implements ObjectifyGenericDaoInterface<T> {
 	@Override
 	public T get(Key<T> key) throws EntityNotFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		return ObjectifyService.ofy().load().key(key).now();
 	}
 
 	@Override
