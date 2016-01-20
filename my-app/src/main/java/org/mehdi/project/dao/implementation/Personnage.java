@@ -1,7 +1,5 @@
 package org.mehdi.project.dao.implementation;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.googlecode.objectify.annotation.*;
 
 @Entity
