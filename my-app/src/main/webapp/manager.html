@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<title>Manager</title>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<form action="Validation" enctype="text/plain" method="post" name="Personnages">
+<p><strong><span style="font-size: 18px">Manager</span></strong></p>
+
+<p>ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input id="id" type="text" /></p>
+
+<p>Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="nom" type="text" /></p>
+
+<p>Cin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input id="cin" type="text" /></p>
+
+<p>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="password" type="text" /></p>
+
+<p>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea id="desc"></textarea></p>
+
+<p><input id="validManager" type="button" value="OK" /></p>
+</form>
+<script>
+var rootURL = "http://localhost:8080/rest"
+var path = "manager"
+
+$( "#validManager" ).click(function() {
+  $.ajax({
+		type : 'POST',
+		url : rootURL + '/' + path,
+		contentType: 'application/json',
+		dataType : "jsonp",
+		data : formToJSON(),
+		success : function(data) {
+			alert('cool');
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Error : ' + textStatus);
+		}
+	});
+});
+
+// Helper function to serialize all the form fields into a JSON string
+function formToJSON() {
+    return JSON.stringify({
+        "id": $('#id').val(),
+        "nom":$('#nom').val(),
+        "cin":$('#cin').val(),
+        "password":$('#password').val(),
+        "desc":$('#desc').val()
+
+    });
+}
+
+</script></body>
+</html>

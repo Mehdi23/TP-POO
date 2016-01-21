@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<title>Table</title>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<form action="Validation" enctype="text/plain" method="post" name="Personnages">
+<p><strong><span style="font-size: 18px">Table</span></strong></p>
+
+<p>ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input id="id" type="text" /></p>
+
+<p>Numero&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="numero" type="text" /></p>
+
+<p>Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input id="type" type="text" /></p>
+
+<p>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea id="desc"></textarea></p>
+
+<p><input id="validTable" type="button" value="OK" /></p>
+</form>
+<script>
+var rootURL = "http://localhost:8080/rest"
+var path = "table"
+
+$( "#validTable" ).click(function() {
+  $.ajax({
+		type : 'POST',
+		url : rootURL + '/' + path,
+		contentType: 'application/json',
+		dataType : "jsonp",
+		data : formToJSON(),
+		success : function(data) {
+			alert('cool');
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Error : ' + textStatus);
+		}
+	});
+});
+
+// Helper function to serialize all the form fields into a JSON string
+function formToJSON() {
+    return JSON.stringify({
+        "id": $('#id').val(),
+        "numero":$('#numero').val(),
+        "type":$('#type').val(),
+        "desc":$('#desc').val()
+    });
+}
+
+</script></body>
+</html>

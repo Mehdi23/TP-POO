@@ -93,7 +93,7 @@ public class ObjectifyGenericDao<T> implements ObjectifyGenericDaoInterface<T> {
 	@Override
 	public List<T> asListe(Iterable<T> iterable) {
 		// TODO Auto-generated method stub
-		return null;
+		return ofy().load().type(T).id(id).get();
 	}
 
 	@Override
