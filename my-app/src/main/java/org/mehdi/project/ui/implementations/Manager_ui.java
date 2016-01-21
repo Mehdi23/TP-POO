@@ -29,8 +29,7 @@ public class Manager_ui {
 	@GET
     @Produces({ MediaType.APPLICATION_JSON })
     public List<Manager> findAll() {
-		Manager p = new Manager();
-        return p.get(P.id) T get(Key<T> key);
+		return ObjectifyService.ofy().load().type(Manager.class).list();
     }
 
 	@POST
