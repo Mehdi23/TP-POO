@@ -1,56 +1,47 @@
 <!doctype html>
 <html>
 <head>
-	<title>Serveur</title>
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<title>serveur</title>
 </head>
 <body>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- CRUD-->
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+<input id="delete" type="button" value="supprimer" />&nbsp;&nbsp;
+<input id="create" type="button" value="creer" />&nbsp; 
+<input id="update" type="button" value="modifier" />&nbsp;&nbsp;
+<input id="search" type="button" value="chercher" />&nbsp;&nbsp;</p>
+
+<!-- Suivant & Precedent-->
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<input id="first" type="button" value="&lt;&lt;" />&nbsp; 
+<input id="prev" type="button" value="&lt;" />&nbsp; 
+<input id="next" type="button" value="&gt;" />&nbsp; 
+<input id="last" type="button" value="&gt;&gt;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+	 
 <form action="Validation" enctype="text/plain" method="post" name="Personnages">
 <p><strong><span style="font-size: 18px">Serveur</span></strong></p>
 
-<p>ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input id="id" type="text" /></p>
+<p>ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input name="id" id="id" type="text" /></p>
 
-<p>Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="nom" type="text" /></p>
+<p>Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="nom" id="nom" type="text" /></p>
 
-<p>Cin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input id="cin" type="text" /></p>
+<p>Cin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input name="cin" id="cin" type="text" /></p>
 
-<p>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="password" type="text" /></p>
+<p>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="password" id="password" type="text" /></p>
 
-<p>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea id="desc"></textarea></p>
+<p>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="desc" id="desc"></textarea></p>
 
-<p><input id="validServeur" type="button" value="OK" /></p>
 </form>
-<script>
-var rootURL = "http://localhost:8080/rest"
-var path = "serveur"
-
-$( "#validServeur" ).click(function() {
-  $.ajax({
-		type : 'POST',
-		url : rootURL + '/' + path,
-		contentType: 'application/json',
-		dataType : "jsonp",
-		data : formToJSON(),
-		success : function(data) {
-			alert('cool');
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert('Error : ' + textStatus);
-		}
-	});
-});
-
-// Helper function to serialize all the form fields into a JSON string
-function formToJSON() {
-    return JSON.stringify({
-        "id": $('#id').val(),
-        "nom":$('#nom').val(),
-        "cin":$('#cin').val(),
-        "password":$('#password').val(),
-        "desc":$('#desc').val()
-
-    });
-}
-
-</script></body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.loadJSON.js "></script>
+<script src="js/jquery.serialize-object.min.js"></script>
+<script src="js/index.js"></script>
+</body>
 </html>
