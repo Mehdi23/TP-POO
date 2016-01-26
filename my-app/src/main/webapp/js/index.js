@@ -35,19 +35,54 @@ $( "#search" ).click(function() {
 
 })
 
+$( "#update" ).click(function() {
+    $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: rootURL + '/' + $('title').text(),
+        dataType: "jsonp",
+        data: $('form').serializeJSON(),
+        success: function(textStatus, jqXHR){
+            alert('updated successfully');
+            location.reload();
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert('update error: ' + textStatus);
+        }
+    });
+})
+
+$( "#delete" ).click(function() {
+    console.log('delete !');
+    $.ajax({
+        type: 'DELETE',
+        contentType: 'application/json',
+		dataType : "jsonp",
+        url: rootURL + '/' + $('title').text() + '/' + $("#id").val(),
+        success: function(textStatus, jqXHR){
+            alert('deleted successfully ');
+            location.reload();
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert('delete error '+rootURL + '/' + $('title').text() + '/' + $("#id").text());
+        }
+    });
+})
+
 $( "#next" ).click(function() {
 
   index = parseInt($("#current").text());
+  index++;
   $.ajax({
 		type : 'GET',
 		url : rootURL + '/' + $('title').text(),
 		dataType : "json",
 		success : function(data) {
-		    $("#current").text(index+1);
+		    $("#current").text(index);
 		    $("#total").text(data.length);
-		    if(index == data.length-1) $("#next").prop('disabled', true); 
+		    if(index == data.length) $("#next").prop('disabled', true); 
 		    if(index == 2) $("#prev").prop('disabled', false); 
-			$('form').loadJSON(data[index]);
+			$('form').loadJSON(data[index-1]);
 		}
 	});
 
@@ -56,16 +91,17 @@ $( "#next" ).click(function() {
 $( "#prev" ).click(function() {
 
   index = parseInt($("#current").text());
+  index--;
   $.ajax({
 		type : 'GET',
 		url : rootURL + '/' + $('title').text(),
 		dataType : "json",
 		success : function(data) {
-		    $("#current").text(index-1);
+		    $("#current").text(index);
 		    $("#total").text(data.length);
 		    if(index == data.length-1) $("#next").prop('disabled', false); 
-		    if(index == 2) $("#prev").prop('disabled', true); 
-			$('form').loadJSON(data[index-2]);
+		    if(index == 1) $("#prev").prop('disabled', true); 
+			$('form').loadJSON(data[index-1]);
 		}
 	});
 
