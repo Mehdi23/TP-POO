@@ -1,14 +1,24 @@
-var rootURL = "http://localhost:8080/rest"
+/*var rootURL = "http://localhost:8080/rest"*/
+var rootURL = "http://mehdiappk.appspot.com/rest"
 var index = 0
 
-$( "#create" ).click(function() {
+$( ".treeview-menu-entity" ).click(function() {
+
+     $("#content-header-text").html("Référenciel <span ><small>"+$(this).attr('name')+"</small></span>");         
+     $("#page-header").load("pages/crud.html");
+     $("#page-content" ).load( "entite/"+$(this).attr('name')+".html" );
+     $("#page-footer").load("pages/paging.html");
+     $("#entity" ).text($(this).attr('name'));
+})
+
+$(document.body).on('click', '#create' ,function(){
 
   $.ajax({
 		type : 'POST',
-		url : rootURL + '/' + $('title').text(),
+		url : rootURL + '/' + $('#entity').text(),
 		contentType: 'application/json',
 		dataType : "jsonp",
-		data : $('form').serializeJSON(),
+		data : $('#entityform').serializeJSON(),
 		success : function(data) {
 			alert('Saved ...');
 		},
@@ -19,29 +29,32 @@ $( "#create" ).click(function() {
 	
 })
 
-$( "#search" ).click(function() {
+$(document.body).on('click', '#search' ,function(){
 
   index = 0;
   $.ajax({
 		type : 'GET',
-		url : rootURL + '/' + $('title').text(),
+		url : rootURL + '/' + $('#entity').text(),
 		dataType : "json",
 		success : function(data) {
 		    $("#current").text(1);
 		    $("#total").text(data.length);
-			$('form').loadJSON(data[index]);
-		}
+			$('#entityform').loadJSON(data[index]);
+		},
+		error: function(){
+            alert('search error ');
+        }
 	});
 
 })
 
-$( "#update" ).click(function() {
+$(document.body).on('click', '#update' ,function(){
     $.ajax({
         type: 'PUT',
         contentType: 'application/json',
-        url: rootURL + '/' + $('title').text(),
-        dataType: "jsonp",
-        data: $('form').serializeJSON(),
+        url: rootURL + '/' + $('#entity').text(),
+        dataType: "json",
+        data: $('#entityform').serializeJSON(),
         success: function(textStatus, jqXHR){
             alert('updated successfully');
             location.reload();
@@ -52,91 +65,91 @@ $( "#update" ).click(function() {
     });
 })
 
-$( "#delete" ).click(function() {
+$(document.body).on('click', '#delete' ,function(){
     console.log('delete !');
     $.ajax({
         type: 'DELETE',
         contentType: 'application/json',
-		dataType : "jsonp",
-        url: rootURL + '/' + $('title').text() + '/' + $("#id").val(),
+		dataType : "json",
+        url: rootURL + '/' + $('#entity').text() + '/' + $("#id").val(),
         success: function(textStatus, jqXHR){
             alert('deleted successfully ');
             location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown){
-            alert('delete error '+rootURL + '/' + $('title').text() + '/' + $("#id").text());
+            alert('delete error ');
         }
     });
 })
 
-$( "#next" ).click(function() {
+$(document.body).on('click', '#next' ,function(){
 
   index = parseInt($("#current").text());
   index++;
   $.ajax({
 		type : 'GET',
-		url : rootURL + '/' + $('title').text(),
+		url : rootURL + '/' + $('#entity').text(),
 		dataType : "json",
 		success : function(data) {
 		    $("#current").text(index);
 		    $("#total").text(data.length);
 		    if(index == data.length) $("#next").prop('disabled', true); 
 		    if(index == 2) $("#prev").prop('disabled', false); 
-			$('form').loadJSON(data[index-1]);
+			$('#entityform').loadJSON(data[index-1]);
 		}
 	});
 
 })
 
-$( "#prev" ).click(function() {
+$(document.body).on('click', '#prev' ,function(){
 
   index = parseInt($("#current").text());
   index--;
   $.ajax({
 		type : 'GET',
-		url : rootURL + '/' + $('title').text(),
+		url : rootURL + '/' + $('#entity').text(),
 		dataType : "json",
 		success : function(data) {
 		    $("#current").text(index);
 		    $("#total").text(data.length);
 		    if(index == data.length-1) $("#next").prop('disabled', false); 
 		    if(index == 1) $("#prev").prop('disabled', true); 
-			$('form').loadJSON(data[index-1]);
+			$('#entityform').loadJSON(data[index-1]);
 		}
 	});
 
 })
 
-$( "#first" ).click(function() {
+$(document.body).on('click', '#first' ,function(){
 
   index = 0;
   $.ajax({
 		type : 'GET',
-		url : rootURL + '/' + $('title').text(),
+		url : rootURL + '/' + $('#entity').text(),
 		dataType : "json",
 		success : function(data) {
 		    $("#current").text(1);
 		    $("#total").text(data.length);
 		    $("#prev").prop('disabled', true);
 		    $("#next").prop('disabled', false);
-			$('form').loadJSON(data[0]);
+			$('#entityform').loadJSON(data[0]);
 		}
 	});
 
 })
 
-$( "#last" ).click(function() {
+$(document.body).on('click', '#last' ,function(){
 
   $.ajax({
 		type : 'GET',
-		url : rootURL + '/' + $('title').text(),
+		url : rootURL + '/' + $('#entity').text(),
 		dataType : "json",
 		success : function(data) {
 		    $("#current").text(data.length);
 		    $("#total").text(data.length);
 		    $("#next").prop('disabled', true);
 		    $("#prev").prop('disabled', false);
-			$('form').loadJSON(data[data.length-1]);
+			$('#entityform').loadJSON(data[data.length-1]);
 		}
 	});
 
