@@ -1,12 +1,35 @@
-<form id="entityform" action="Validation" enctype="text/plain" method="post" name="Personnages">    
-<p>ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input name="id" id="id" type="text" /></p>
-
-<p>Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="nom" id="nom" type="text" /></p>
-
-<p>Cin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input name="cin" id="cin" type="text" /></p>
-
-<p>Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="password" id="password" type="text" /></p>
-
-<p>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="desc" id="desc"></textarea></p>
-
+<form role="form" id="entityform">
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">Serveurs</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                      <label>ID</label>
+                      <input id="id" name="id" type="text" class="form-control">
+                </div>       
+				<div class="form-group">
+                      <label>Nom</label>
+                      <input id="nom" name="nom" type="text" class="form-control">
+                </div> 
+            </div><!-- /.col -->
+            <div class="col-md-6">
+                <div class="form-group">
+                      <label>CIN</label>
+                      <input id="cin" name="cin" type="text" class="form-control">
+                </div> 
+				<div class="form-group">
+                      <label>Password</label>
+                      <input id="password" name="password" type="password" class="form-control">
+                </div>
+                <div class="form-group">
+                      <label>Description</label>
+                      <textarea id="dec" name="desc"  class="form-control" rows="3"></textarea>
+                </div>	
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
 </form>

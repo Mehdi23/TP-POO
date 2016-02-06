@@ -1,18 +1,56 @@
-<form id="entityform" action="Validation" enctype="text/plain" method="post" name="Personnages">    
-
-<p>ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<input name="id" id="id" type="text" /></p>
-
-<p>Nom1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="nom1" id="nom1" type="text" /></p>
-
-<p>Nom2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="nom2" id="nom2" type="text" /></p>
-
-<p>Nom3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="nom3" id="nom3" type="text" /></p>
-
-<p>Prix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input name="prix" id="prix" type="text" /></p>
-
-<p>Description1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="desc1" id="desc1"></textarea></p>
-
-<p>Description2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="desc2" id="desc2"></textarea></p>
-
-<p>Description3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="desc3" id="desc3"></textarea></p>
+<form role="form" id="entityform">
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">Articles</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                      <label>ID</label>
+                      <input id="id" name="id" type="text" class="form-control">
+                </div>       
+				<div class="form-group">
+                      <label>Nom 1</label>
+                      <input id="nom1" name="nom1" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                      <label>Description 1</label>
+                      <textarea id="dec1" name="desc1"  class="form-control" rows="3"></textarea>
+                </div>
+            </div><!-- /.col -->
+            <div class="col-md-4">
+			    <div class="form-group">
+                      <label>Prix</label>
+                      <input id="prix" name="prix" type="text" class="form-control">
+                </div> 	
+                <div class="form-group">
+                      <label>Nom 2</label>
+                      <input id="nom2" name="nom2" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                      <label>Description 2</label>
+                      <textarea id="dec2" name="desc2"  class="form-control" rows="3"></textarea>
+                </div>
+            </div><!-- /.col -->
+			<div class="col-md-4">
+                <!--div class="form-group">
+                      <label>Disponible</label>
+                      <select id="dispo" name="dispo" class="form-control select2" style="width: 100%;">
+                           <option selected="selected">Oui</option>
+                           <option>Non</option>
+                      </select> 
+                </div--> 	
+                <div class="form-group">
+                      <label>Nom 3</label>
+                      <input id="nom3" name="nom3" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                      <label>Description 3</label>
+                      <textarea id="dec3" name="desc3"  class="form-control" rows="3"></textarea>
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
 </form>
