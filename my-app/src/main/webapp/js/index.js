@@ -10,9 +10,48 @@ $( ".treeview-menu-entity" ).click(function() {
      $("#page-content" ).load( "entite/"+$(this).attr('name')+".html" );
      $("#entity" ).text($(this).attr('name'));
      $( ".sidebar-toggle" ).trigger( "click" );
+
 })
 
-$(document.body).on('click', '#create' ,function(){
+
+$(document.body).on('change', "#select-crud", function(){ 
+    var val = parseInt($(this).val(), 10);
+    switch (val) {
+        case 1://search
+           $('#page-content').find('input, textarea, button, select').attr('disabled', true);
+        break;
+        case 2: //create
+           $('#page-content').find('input, textarea, button, select').attr('disabled', false);
+           $('#page-content').find('input, textarea, button, select').val("");
+        break;
+        case 3: //update
+           $('#page-content').find('input, textarea, button, select').attr('disabled', false);
+        break;
+        case 4: //delete
+           $('#page-content').find('input, textarea, button, select').attr('disabled', true);
+        break;
+    }
+})
+
+$(document.body).on('click', '#valid-crud' ,function(){ 
+    var val = parseInt($("#select-crud").val(), 10);
+    switch (val) {
+        case 1:
+           Search();
+        break;
+        case 2:  
+           Create();
+        break;
+        case 3: 
+           Update();
+        break;
+        case 4: 
+           Delete();
+        break;
+    }
+})
+
+function Create(){
 
   $.ajax({
 		type : 'POST',
@@ -23,16 +62,16 @@ $(document.body).on('click', '#create' ,function(){
 		success : function(data) {
 			alert('Saved ...');
 			$('#entityform')[0].reset();
-			$( "#search" ).trigger( "click" );
+			Search();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert('Error : ' + textStatus);
+			alert('Add error');
 		}
 	});
 	
-})
+}
 
-$(document.body).on('click', '#search' ,function(){
+function Search(){
 
   index = 0;
   $.ajax({
@@ -50,10 +89,11 @@ $(document.body).on('click', '#search' ,function(){
             alert('search error ');
         }
 	});
+	$('#page-content').find('input, textarea, button, select').attr('disabled', true);
+}
 
-})
-
-$(document.body).on('click', '#update' ,function(){
+function Update(){
+    if (confirm('Vous confirmez la modification?')) { 
     $.ajax({
         type: 'PUT',
         contentType: 'application/json',
@@ -63,30 +103,37 @@ $(document.body).on('click', '#update' ,function(){
         success: function(textStatus, jqXHR){
             alert('updated successfully');
             $('#entityform')[0].reset();
-			$( "#search" ).trigger( "click" );
+			Search();
         },
         error: function(jqXHR, textStatus, errorThrown){
-            alert('update error: ' + textStatus);
+            alert('update error: ');
         }
     });
-})
+    }
+    
+    else {
+        $('#entityform')[0].reset();
+        Search();
+    }
+}
 
-$(document.body).on('click', '#delete' ,function(){
-    console.log('delete !');
-    $.ajax({
-        type: 'DELETE',
-        contentType: 'application/json',
-		dataType : datyp,
-        url: rootURL + '/' + $('#entity').text() + '/' + $("#id").val(),
-        success: function(textStatus, jqXHR){
-            alert('deleted successfully ');
-            $( "#search" ).trigger( "click" );
-        },
-        error: function(jqXHR, textStatus, errorThrown){
-            alert('delete error ');
-        }
-    });
-})
+function Delete(){ 
+    if (confirm('Vous confirmez la suppression?')) { 
+        $.ajax({
+            type: 'DELETE',
+            contentType: 'application/json',
+		    dataType : datyp,
+            url: rootURL + '/' + $('#entity').text() + '/' + $("#id").val(),
+            success: function(textStatus, jqXHR){
+                alert('enregistrement supprimé ');
+                Search();
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('delete error ');
+            }
+        });
+    }    
+}
 
 $(document.body).on('click', '#next' ,function(){
 
