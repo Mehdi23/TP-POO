@@ -227,7 +227,7 @@ $( ".treeview-menu-entity" ).click(function() {
      $("#page-header").load("pages/crud.html");
      $("#page-content" ).load( "entite/"+$(this).attr('name')+".html" );
      $("#entity" ).text($(this).attr('name'));
-     $( ".sidebar-toggle" ).trigger( "click" );
+    /* $( ".sidebar-toggle" ).trigger( "click" );*/
 	 $(".btn-crud").prop('disabled', true);
 
 })
